@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <style>
+        #map {
+            width: 85;
+            height: 350px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="data/FireHydrant_1.js"></script>
+        <script src="data/FireHose_2.js"></script>
+        <script src="data/ClassDExt_3.js"></script>
+        <script src="data/WetCExt_4.js"></script>
+        <script src="data/Co2Ext_5.js"></script>
+        <script src="data/DryPowExt_6.js"></script>
+        <script src="data/FoamExt_7.js"></script>
+        <script src="data/WaterExt_8.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+
+            if (e.target.feature.geometry.type === 'LineString') {
+              highlightLayer.setStyle({
+                color: '#ffff00',
+              });
+            } else {
+              highlightLayer.setStyle({
+                fillColor: '#ffff00',
+                fillOpacity: 1
+              });
+            }
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        })
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+        }
+        map.createPane('pane_OSMStandard_0');
+        map.getPane('pane_OSMStandard_0').style.zIndex = 400;
+        var layer_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            pane: 'pane_OSMStandard_0',
+            opacity: 1.0,
+            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_OSMStandard_0;
+        map.addLayer(layer_OSMStandard_0);
+        function pop_FireHydrant_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_FireHydrant_1_0() {
+            return {
+                pane: 'pane_FireHydrant_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_FireHydrant_1');
+        map.getPane('pane_FireHydrant_1').style.zIndex = 401;
+        map.getPane('pane_FireHydrant_1').style['mix-blend-mode'] = 'normal';
+        var layer_FireHydrant_1 = new L.geoJson(json_FireHydrant_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_FireHydrant_1',
+            layerName: 'layer_FireHydrant_1',
+            pane: 'pane_FireHydrant_1',
+            onEachFeature: pop_FireHydrant_1,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_FireHydrant_1_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_FireHydrant_1);
+        map.addLayer(layer_FireHydrant_1);
+        function pop_FireHose_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+        
+       
+
+        function style_FireHose_2_0() {
+            return {
+                pane: 'pane_FireHose_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,1,209,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_FireHose_2');
+        map.getPane('pane_FireHose_2').style.zIndex = 402;
+        map.getPane('pane_FireHose_2').style['mix-blend-mode'] = 'normal';
+        var layer_FireHose_2 = new L.geoJson(json_FireHose_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_FireHose_2',
+            layerName: 'layer_FireHose_2',
+            pane: 'pane_FireHose_2',
+            onEachFeature: pop_FireHose_2,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_FireHose_2_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_FireHose_2);
+        map.addLayer(layer_FireHose_2);
+        function pop_ClassDExt_3(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_ClassDExt_3_0() {
+            return {
+                pane: 'pane_ClassDExt_3',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(19,86,229,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ClassDExt_3');
+        map.getPane('pane_ClassDExt_3').style.zIndex = 403;
+        map.getPane('pane_ClassDExt_3').style['mix-blend-mode'] = 'normal';
+        var layer_ClassDExt_3 = new L.geoJson(json_ClassDExt_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ClassDExt_3',
+            layerName: 'layer_ClassDExt_3',
+            pane: 'pane_ClassDExt_3',
+            onEachFeature: pop_ClassDExt_3,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_ClassDExt_3_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_ClassDExt_3);
+        map.addLayer(layer_ClassDExt_3);
+        function pop_WetCExt_4(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_WetCExt_4_0() {
+            return {
+                pane: 'pane_WetCExt_4',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,238,1,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_WetCExt_4');
+        map.getPane('pane_WetCExt_4').style.zIndex = 404;
+        map.getPane('pane_WetCExt_4').style['mix-blend-mode'] = 'normal';
+        var layer_WetCExt_4 = new L.geoJson(json_WetCExt_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_WetCExt_4',
+            layerName: 'layer_WetCExt_4',
+            pane: 'pane_WetCExt_4',
+            onEachFeature: pop_WetCExt_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_WetCExt_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_WetCExt_4);
+        map.addLayer(layer_WetCExt_4);
+        function pop_Co2Ext_5(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Co2Ext_5_0() {
+            return {
+                pane: 'pane_Co2Ext_5',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,0,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Co2Ext_5');
+        map.getPane('pane_Co2Ext_5').style.zIndex = 405;
+        map.getPane('pane_Co2Ext_5').style['mix-blend-mode'] = 'normal';
+        var layer_Co2Ext_5 = new L.geoJson(json_Co2Ext_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Co2Ext_5',
+            layerName: 'layer_Co2Ext_5',
+            pane: 'pane_Co2Ext_5',
+            onEachFeature: pop_Co2Ext_5,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Co2Ext_5_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Co2Ext_5);
+        map.addLayer(layer_Co2Ext_5);
+        function pop_DryPowExt_6(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_DryPowExt_6_0() {
+            return {
+                pane: 'pane_DryPowExt_6',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(1,255,255,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_DryPowExt_6');
+        map.getPane('pane_DryPowExt_6').style.zIndex = 406;
+        map.getPane('pane_DryPowExt_6').style['mix-blend-mode'] = 'normal';
+        var layer_DryPowExt_6 = new L.geoJson(json_DryPowExt_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_DryPowExt_6',
+            layerName: 'layer_DryPowExt_6',
+            pane: 'pane_DryPowExt_6',
+            onEachFeature: pop_DryPowExt_6,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_DryPowExt_6_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_DryPowExt_6);
+        map.addLayer(layer_DryPowExt_6);
+        function pop_FoamExt_7(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_FoamExt_7_0() {
+            return {
+                pane: 'pane_FoamExt_7',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(170,159,103,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_FoamExt_7');
+        map.getPane('pane_FoamExt_7').style.zIndex = 407;
+        map.getPane('pane_FoamExt_7').style['mix-blend-mode'] = 'normal';
+        var layer_FoamExt_7 = new L.geoJson(json_FoamExt_7, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_FoamExt_7',
+            layerName: 'layer_FoamExt_7',
+            pane: 'pane_FoamExt_7',
+            onEachFeature: pop_FoamExt_7,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_FoamExt_7_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_FoamExt_7);
+        map.addLayer(layer_FoamExt_7);
+        function pop_WaterExt_8(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_WaterExt_8_0() {
+            return {
+                pane: 'pane_WaterExt_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,5,1,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_WaterExt_8');
+        map.getPane('pane_WaterExt_8').style.zIndex = 408;
+        map.getPane('pane_WaterExt_8').style['mix-blend-mode'] = 'normal';
+        var layer_WaterExt_8 = new L.geoJson(json_WaterExt_8, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_WaterExt_8',
+            layerName: 'layer_WaterExt_8',
+            pane: 'pane_WaterExt_8',
+            onEachFeature: pop_WaterExt_8,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_WaterExt_8_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_WaterExt_8);
+        map.addLayer(layer_WaterExt_8);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/WaterExt_8.png" /> WaterExt': layer_WaterExt_8,'<img src="legend/FoamExt_7.png" /> FoamExt': layer_FoamExt_7,'<img src="legend/DryPowExt_6.png" /> DryPowExt': layer_DryPowExt_6,'<img src="legend/Co2Ext_5.png" /> Co2Ext': layer_Co2Ext_5,'<img src="legend/WetCExt_4.png" /> WetCExt': layer_WetCExt_4,'<img src="legend/ClassDExt_3.png" /> ClassDExt': layer_ClassDExt_3,'<img src="legend/FireHose_2.png" /> FireHose': layer_FireHose_2,'<img src="legend/FireHydrant_1.png" /> FireHydrant': layer_FireHydrant_1,"OSM Standard": layer_OSMStandard_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
