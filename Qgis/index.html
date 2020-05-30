@@ -118,7 +118,7 @@
             layerName: 'layer_FireHydrant_1',
             pane: 'pane_FireHydrant_1',
             onEachFeature: function (feature, layer) {
-                layer.bindPopup('<h1>'+feature.properties.Type+'</h1><p>City: '+feature.properties.City+'</p><p>Street: '+feature.properties.Street+'</p><p>Number: '+feature.properties.Number+'</p><p>Intended For: '+feature.properties.IntendFor+'</p><p>SuperVisor Name: '+feature.properties.VisorName+'</p><p>SuperVisor Num: '+feature.properties.VisorNum+'</p><p>SuperVisor Location: '+feature.properties.VisorLoc+'</p><p>Picture: Put Url '+feature.properties.Picture+'</p><p>More Info: '+feature.properties.MoreInfo+'</p>');
+                layer.bindPopup('<h1>'+feature.properties.Type+'</h1><p>Address: '+feature.properties.City+', '+feature.properties.Street+', '+feature.properties.Number+'</p><p>Intended For: '+feature.properties.IntendFor+'</p><p>SuperVisor Name: '+feature.properties.VisorName+'</p><p>SuperVisor Num: '+feature.properties.VisorNum+'</p><p>SuperVisor Location: '+feature.properties.VisorLoc+'</p><img src="'+feature.properties.Picture+'" style="width:100px;height:100px;"></img><p>More Info: '+feature.properties.MoreInfo+'</p>');
             },
         });
         bounds_group.addLayer(layer_FireHydrant_1);
