@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <link rel="stylesheet" href="css/leaflet-geoman.css">
         <style>
         #map {
             width: 85;
@@ -29,6 +30,9 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
+
+        <script src="js/leaflet-geoman.min.js"></script>
+
         <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script src="data/FireHydrant_1.js"></script>
         <script src="data/FireHose_2.js"></script>
@@ -76,8 +80,10 @@
             minZoom: 1,
             maxZoom: 28,
             minNativeZoom: 0,
-            maxNativeZoom: 19
+            maxNativeZoom: 19,
+           /* center: (31.863452, 34.979600),*/
         });
+            
         layer_OSMStandard_0;
         map.addLayer(layer_OSMStandard_0);
             
@@ -462,6 +468,17 @@
             title: 'Testing'
         }).addTo(map);
             
+        
+        map.on('contextmenu',(e) => {
+          L.popup()
+          .setLatLng(e.latlng)
+          .setContent('<h1>'+e.latlng+'</h1>')
+          .addTo(map)
+          .openOn(map);
+        });
+        
+        
+            
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .className += ' fa fa-search';
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
@@ -469,7 +486,7 @@
             
             
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/WaterExt_8.png" /> WaterExt': layer_WaterExt_8,'<img src="legend/FoamExt_7.png" /> FoamExt': layer_FoamExt_7,'<img src="legend/DryPowExt_6.png" /> DryPowExt': layer_DryPowExt_6,'<img src="legend/Co2Ext_5.png" /> Co2Ext': layer_Co2Ext_5,'<img src="legend/WetCExt_4.png" /> WetCExt': layer_WetCExt_4,'<img src="legend/ClassDExt_3.png" /> ClassDExt': layer_ClassDExt_3,'<img src="legend/FireHose_2.png" /> FireHose': layer_FireHose_2,'<img src="legend/FireHydrant_1.png" /> FireHydrant': layer_FireHydrant_1,"OSM Standard": layer_OSMStandard_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/WaterExt_8.png" /> WaterExt': layer_WaterExt_8,'<img src="legend/FoamExt_7.png" /> FoamExt': layer_FoamExt_7,'<img src="legend/DryPowExt_6.png" /> DryPowExt': layer_DryPowExt_6,'<img src="legend/Co2Ext_5.png" /> Co2Ext': layer_Co2Ext_5,'<img src="legend/WetCExt_4.png" /> WetCExt': layer_WetCExt_4,'<img src="legend/ClassDExt_3.png" /> ClassDExt': layer_ClassDExt_3,'<img src="legend/FireHose_2.png" /> FireHose': layer_FireHose_2,'<img src="legend/FireHydrant_1.png" /> FireHydrant': layer_FireHydrant_1,},{collapsed:false}).addTo(map);
         setBounds();
         </script>
     </body>
