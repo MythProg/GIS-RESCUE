@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <link rel="stylesheet" href="css/leaflet-geoman.css">
-        <link rel="stylesheet" href="leaflet-routing-machine.css" />
+        <link rel="stylesheet" href="css/leaflet-routing-machine.css" />
         <style>
         #map {
             width: 85;
@@ -31,8 +31,7 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="leaflet-routing-machine.js"></script>
-        <script src="leaflet-routing-machine.min.js"></script>
+        <script src="js/leaflet-routing-machine.js"></script>
         <script src="js/leaflet-geoman.min.js"></script>
         <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
 
@@ -80,10 +79,9 @@
             maxNativeZoom: 19,
            /* center: (31.863452, 34.979600),*/
         });
-            
         layer_OSMStandard_0;
         map.addLayer(layer_OSMStandard_0);
-            
+    
         function pop_FireHydrant_1(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -472,16 +470,14 @@
             
         var baseMaps = {};
         L.control.layers(baseMaps, {'<img src="legend/WaterExt_8.png" /> WaterExt': layer_WaterExt_8,'<img src="legend/FoamExt_7.png" /> FoamExt': layer_FoamExt_7,'<img src="legend/DryPowExt_6.png" /> DryPowExt': layer_DryPowExt_6,'<img src="legend/Co2Ext_5.png" /> Co2Ext': layer_Co2Ext_5,'<img src="legend/WetCExt_4.png" /> WetCExt': layer_WetCExt_4,'<img src="legend/ClassDExt_3.png" /> ClassDExt': layer_ClassDExt_3,'<img src="legend/FireHose_2.png" /> FireHose': layer_FireHose_2,'<img src="legend/FireHydrant_1.png" /> FireHydrant': layer_FireHydrant_1,},{collapsed:false, position: 'bottomleft'}).addTo(map);
-        setBounds();
             
-        var routingControl = new L.Routing.control({
+        L.Routing.control({
             waypoints: [
                 L.latLng(57.74, 11.94),
                 L.latLng(57.6792, 11.949)
             ],
-            show: true,
-            position: 'topright',
-            routeWhileDragging: true
+            routeWhileDragging: true,
+            geocoder: L.Control.Geocoder.nominatim()
         }).addTo(map);
             
         </script>
