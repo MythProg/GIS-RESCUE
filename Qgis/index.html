@@ -67,7 +67,7 @@
         L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
         var bounds_group = new L.featureGroup([]);
         map.createPane('pane_OSMStandard_0');
-        map.getPane('pane_OSMStandard_0').style.zIndex = 400;
+        map.getPane('pane_OSMStandard_0').style.zIndex = 0;
         var layer_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             pane: 'pane_OSMStandard_0',
             opacity: 1.0,
@@ -76,7 +76,6 @@
             maxZoom: 28,
             minNativeZoom: 0,
             maxNativeZoom: 19,
-           /* center: (31.863452, 34.979600),*/
         });
         layer_OSMStandard_0;
         map.addLayer(layer_OSMStandard_0);
@@ -109,7 +108,7 @@
             }
         }
         map.createPane('pane_FireHydrant_1');
-        map.getPane('pane_FireHydrant_1').style.zIndex = 401;
+        map.getPane('pane_FireHydrant_1').style.zIndex = 2000;
         map.getPane('pane_FireHydrant_1').style['mix-blend-mode'] = 'normal';
         var layer_FireHydrant_1 = new L.geoJson(json_FireHydrant_1, {
             attribution: '',
@@ -119,8 +118,13 @@
             pane: 'pane_FireHydrant_1',
             onEachFeature: function (feature, layer) {
                 layer.bindPopup('<h1>'+feature.properties.Type+'<img src="'+feature.properties.Picture+'" style="width:100px;height:100px;"></img></h1><p>Address: '+feature.properties.City+', '+feature.properties.Street+', '+feature.properties.Number+'</p><p>Intended For: '+feature.properties.IntendFor+'</p><p>SuperVisor Name: '+feature.properties.VisorName+'</p><p>SuperVisor Num: '+feature.properties.VisorNum+'</p><p>SuperVisor Location: '+feature.properties.VisorLoc+'</p><p>More Info: '+feature.properties.MoreInfo+'</p>');
+            },pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_FireHydrant_1_0(feature));
             },
-            
         });
         bounds_group.addLayer(layer_FireHydrant_1);
         map.addLayer(layer_FireHydrant_1);
@@ -153,7 +157,7 @@
             }
         }
         map.createPane('pane_FireHose_2');
-        map.getPane('pane_FireHose_2').style.zIndex = 402;
+        map.getPane('pane_FireHose_2').style.zIndex = 2001;
         map.getPane('pane_FireHose_2').style['mix-blend-mode'] = 'normal';
         var layer_FireHose_2 = new L.geoJson(json_FireHose_2, {
             attribution: '',
@@ -163,6 +167,12 @@
             pane: 'pane_FireHose_2',
             onEachFeature: function (feature, layer) {
                 layer.bindPopup('<div><h1>'+feature.properties.Type+'<img src="'+feature.properties.Picture+'" style="width:100px;height:100px;"></img></h1><p>Address: '+feature.properties.City+', '+feature.properties.Street+', '+feature.properties.Number+'</p><p>Intended For: '+feature.properties.IntendFor+'</p><p>SuperVisor Name: '+feature.properties.VisorName+'</p><p>SuperVisor Num: '+feature.properties.VisorNum+'</p><p>SuperVisor Location: '+feature.properties.VisorLoc+'</p><p>More Info: '+feature.properties.MoreInfo+'</p>');
+            },pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_FireHose_2_0(feature));
             },
         });
         bounds_group.addLayer(layer_FireHose_2);
@@ -195,7 +205,7 @@
             }
         }
         map.createPane('pane_ClassDExt_3');
-        map.getPane('pane_ClassDExt_3').style.zIndex = 403;
+        map.getPane('pane_ClassDExt_3').style.zIndex = 2002;
         map.getPane('pane_ClassDExt_3').style['mix-blend-mode'] = 'normal';
         var layer_ClassDExt_3 = new L.geoJson(json_ClassDExt_3, {
             attribution: '',
@@ -203,8 +213,9 @@
             dataVar: 'json_ClassDExt_3',
             layerName: 'layer_ClassDExt_3',
             pane: 'pane_ClassDExt_3',
-            onEachFeature: pop_ClassDExt_3,
-            pointToLayer: function (feature, latlng) {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup('<h1>'+feature.properties.Type+'<img src="'+feature.properties.Picture+'" style="width:100px;height:100px;"></img></h1><p>Address: '+feature.properties.City+', '+feature.properties.Street+', '+feature.properties.Number+'</p><p>Intended For: '+feature.properties.IntendFor+'</p><p>SuperVisor Name: '+feature.properties.VisorName+'</p><p>SuperVisor Num: '+feature.properties.VisorNum+'</p><p>SuperVisor Location: '+feature.properties.VisorLoc+'</p><p>More Info: '+feature.properties.MoreInfo+'</p>');
+            },pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
@@ -242,7 +253,7 @@
             }
         }
         map.createPane('pane_WetCExt_4');
-        map.getPane('pane_WetCExt_4').style.zIndex = 404;
+        map.getPane('pane_WetCExt_4').style.zIndex = 2003;
         map.getPane('pane_WetCExt_4').style['mix-blend-mode'] = 'normal';
         var layer_WetCExt_4 = new L.geoJson(json_WetCExt_4, {
             attribution: '',
@@ -250,8 +261,9 @@
             dataVar: 'json_WetCExt_4',
             layerName: 'layer_WetCExt_4',
             pane: 'pane_WetCExt_4',
-            onEachFeature: pop_WetCExt_4,
-            pointToLayer: function (feature, latlng) {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup('<h1>'+feature.properties.Type+'<img src="'+feature.properties.Picture+'" style="width:100px;height:100px;"></img></h1><p>Address: '+feature.properties.City+', '+feature.properties.Street+', '+feature.properties.Number+'</p><p>Intended For: '+feature.properties.IntendFor+'</p><p>SuperVisor Name: '+feature.properties.VisorName+'</p><p>SuperVisor Num: '+feature.properties.VisorNum+'</p><p>SuperVisor Location: '+feature.properties.VisorLoc+'</p><p>More Info: '+feature.properties.MoreInfo+'</p>');
+            },pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
@@ -289,7 +301,7 @@
             }
         }
         map.createPane('pane_Co2Ext_5');
-        map.getPane('pane_Co2Ext_5').style.zIndex = 405;
+        map.getPane('pane_Co2Ext_5').style.zIndex = 2004;
         map.getPane('pane_Co2Ext_5').style['mix-blend-mode'] = 'normal';
         var layer_Co2Ext_5 = new L.geoJson(json_Co2Ext_5, {
             attribution: '',
@@ -297,8 +309,9 @@
             dataVar: 'json_Co2Ext_5',
             layerName: 'layer_Co2Ext_5',
             pane: 'pane_Co2Ext_5',
-            onEachFeature: pop_Co2Ext_5,
-            pointToLayer: function (feature, latlng) {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup('<h1>'+feature.properties.Type+'<img src="'+feature.properties.Picture+'" style="width:100px;height:100px;"></img></h1><p>Address: '+feature.properties.City+', '+feature.properties.Street+', '+feature.properties.Number+'</p><p>Intended For: '+feature.properties.IntendFor+'</p><p>SuperVisor Name: '+feature.properties.VisorName+'</p><p>SuperVisor Num: '+feature.properties.VisorNum+'</p><p>SuperVisor Location: '+feature.properties.VisorLoc+'</p><p>More Info: '+feature.properties.MoreInfo+'</p>');
+            },pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
@@ -336,7 +349,7 @@
             }
         }
         map.createPane('pane_DryPowExt_6');
-        map.getPane('pane_DryPowExt_6').style.zIndex = 406;
+        map.getPane('pane_DryPowExt_6').style.zIndex = 2005;
         map.getPane('pane_DryPowExt_6').style['mix-blend-mode'] = 'normal';
         var layer_DryPowExt_6 = new L.geoJson(json_DryPowExt_6, {
             attribution: '',
@@ -344,8 +357,9 @@
             dataVar: 'json_DryPowExt_6',
             layerName: 'layer_DryPowExt_6',
             pane: 'pane_DryPowExt_6',
-            onEachFeature: pop_DryPowExt_6,
-            pointToLayer: function (feature, latlng) {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup('<h1>'+feature.properties.Type+'<img src="'+feature.properties.Picture+'" style="width:100px;height:100px;"></img></h1><p>Address: '+feature.properties.City+', '+feature.properties.Street+', '+feature.properties.Number+'</p><p>Intended For: '+feature.properties.IntendFor+'</p><p>SuperVisor Name: '+feature.properties.VisorName+'</p><p>SuperVisor Num: '+feature.properties.VisorNum+'</p><p>SuperVisor Location: '+feature.properties.VisorLoc+'</p><p>More Info: '+feature.properties.MoreInfo+'</p>');
+            },pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
@@ -383,7 +397,7 @@
             }
         }
         map.createPane('pane_FoamExt_7');
-        map.getPane('pane_FoamExt_7').style.zIndex = 407;
+        map.getPane('pane_FoamExt_7').style.zIndex = 2006;
         map.getPane('pane_FoamExt_7').style['mix-blend-mode'] = 'normal';
         var layer_FoamExt_7 = new L.geoJson(json_FoamExt_7, {
             attribution: '',
@@ -391,8 +405,9 @@
             dataVar: 'json_FoamExt_7',
             layerName: 'layer_FoamExt_7',
             pane: 'pane_FoamExt_7',
-            onEachFeature: pop_FoamExt_7,
-            pointToLayer: function (feature, latlng) {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup('<h1>'+feature.properties.Type+'<img src="'+feature.properties.Picture+'" style="width:100px;height:100px;"></img></h1><p>Address: '+feature.properties.City+', '+feature.properties.Street+', '+feature.properties.Number+'</p><p>Intended For: '+feature.properties.IntendFor+'</p><p>SuperVisor Name: '+feature.properties.VisorName+'</p><p>SuperVisor Num: '+feature.properties.VisorNum+'</p><p>SuperVisor Location: '+feature.properties.VisorLoc+'</p><p>More Info: '+feature.properties.MoreInfo+'</p>');
+            },pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
@@ -430,7 +445,7 @@
             }
         }
         map.createPane('pane_WaterExt_8');
-        map.getPane('pane_WaterExt_8').style.zIndex = 408;
+        map.getPane('pane_WaterExt_8').style.zIndex = 2007;
         map.getPane('pane_WaterExt_8').style['mix-blend-mode'] = 'normal';
         var layer_WaterExt_8 = new L.geoJson(json_WaterExt_8, {
             attribution: '',
@@ -438,8 +453,9 @@
             dataVar: 'json_WaterExt_8',
             layerName: 'layer_WaterExt_8',
             pane: 'pane_WaterExt_8',
-            onEachFeature: pop_WaterExt_8,
-            pointToLayer: function (feature, latlng) {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup('<h1>'+feature.properties.Type+'<img src="'+feature.properties.Picture+'" style="width:100px;height:100px;"></img></h1><p>Address: '+feature.properties.City+', '+feature.properties.Street+', '+feature.properties.Number+'</p><p>Intended For: '+feature.properties.IntendFor+'</p><p>SuperVisor Name: '+feature.properties.VisorName+'</p><p>SuperVisor Num: '+feature.properties.VisorNum+'</p><p>SuperVisor Location: '+feature.properties.VisorLoc+'</p><p>More Info: '+feature.properties.MoreInfo+'</p>');
+            },pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
@@ -465,14 +481,16 @@
             
         var baseMaps = {};
         L.control.layers(baseMaps, {'<img src="legend/WaterExt_8.png" /> WaterExt': layer_WaterExt_8,'<img src="legend/FoamExt_7.png" /> FoamExt': layer_FoamExt_7,'<img src="legend/DryPowExt_6.png" /> DryPowExt': layer_DryPowExt_6,'<img src="legend/Co2Ext_5.png" /> Co2Ext': layer_Co2Ext_5,'<img src="legend/WetCExt_4.png" /> WetCExt': layer_WetCExt_4,'<img src="legend/ClassDExt_3.png" /> ClassDExt': layer_ClassDExt_3,'<img src="legend/FireHose_2.png" /> FireHose': layer_FireHose_2,'<img src="legend/FireHydrant_1.png" /> FireHydrant': layer_FireHydrant_1,},{collapsed:false, position: 'bottomleft'}).addTo(map);
-            
-        L.Routing.control({
+        
+        map.createPane('myRouting');
+        map.getPane('myRouting').style.zIndex = 3000;
+        var myRouting = new L.Routing.control({
             waypoints: [
                 L.latLng(null),
                 L.latLng(null)
             ],
             lineOptions: {
-                styles: [{color: 'red', opacity: 2, weight: 3}]},
+                styles: [{pane: 'myRouting', color: 'red', opacity: 1, weight: 2}]},
             routeWhileDragging: true,
             geocoder: L.Control.Geocoder.nominatim()
         }).addTo(map);
