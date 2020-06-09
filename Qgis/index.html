@@ -31,10 +31,6 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="js/leaflet-routing-machine.js"></script>
-        <script src="js/leaflet-geoman.min.js"></script>
-        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
-
         <script src="data/FireHydrant_1.js"></script>
         <script src="data/FireHose_2.js"></script>
         <script src="data/ClassDExt_3.js"></script>
@@ -43,6 +39,9 @@
         <script src="data/DryPowExt_6.js"></script>
         <script src="data/FoamExt_7.js"></script>
         <script src="data/WaterExt_8.js"></script>
+        <script src="js/leaflet-routing-machine.js"></script>
+        <script src="js/leaflet-geoman.min.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -119,8 +118,9 @@
             layerName: 'layer_FireHydrant_1',
             pane: 'pane_FireHydrant_1',
             onEachFeature: function (feature, layer) {
-                layer.bindPopup('<h1>'+feature.properties.Type+'</h1><p>Address: '+feature.properties.City+', '+feature.properties.Street+', '+feature.properties.Number+'</p><p>Intended For: '+feature.properties.IntendFor+'</p><p>SuperVisor Name: '+feature.properties.VisorName+'</p><p>SuperVisor Num: '+feature.properties.VisorNum+'</p><p>SuperVisor Location: '+feature.properties.VisorLoc+'</p><img src="'+feature.properties.Picture+'" style="width:100px;height:100px;"></img><p>More Info: '+feature.properties.MoreInfo+'</p>');
+                layer.bindPopup('<h1>'+feature.properties.Type+'<img src="'+feature.properties.Picture+'" style="width:100px;height:100px;"></img></h1><p>Address: '+feature.properties.City+', '+feature.properties.Street+', '+feature.properties.Number+'</p><p>Intended For: '+feature.properties.IntendFor+'</p><p>SuperVisor Name: '+feature.properties.VisorName+'</p><p>SuperVisor Num: '+feature.properties.VisorNum+'</p><p>SuperVisor Location: '+feature.properties.VisorLoc+'</p><p>More Info: '+feature.properties.MoreInfo+'</p>');
             },
+            
         });
         bounds_group.addLayer(layer_FireHydrant_1);
         map.addLayer(layer_FireHydrant_1);
@@ -161,13 +161,8 @@
             dataVar: 'json_FireHose_2',
             layerName: 'layer_FireHose_2',
             pane: 'pane_FireHose_2',
-            onEachFeature: pop_FireHose_2,
-            pointToLayer: function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.circleMarker(latlng, style_FireHose_2_0(feature));
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup('<div><h1>'+feature.properties.Type+'<img src="'+feature.properties.Picture+'" style="width:100px;height:100px;"></img></h1><p>Address: '+feature.properties.City+', '+feature.properties.Street+', '+feature.properties.Number+'</p><p>Intended For: '+feature.properties.IntendFor+'</p><p>SuperVisor Name: '+feature.properties.VisorName+'</p><p>SuperVisor Num: '+feature.properties.VisorNum+'</p><p>SuperVisor Location: '+feature.properties.VisorLoc+'</p><p>More Info: '+feature.properties.MoreInfo+'</p>');
             },
         });
         bounds_group.addLayer(layer_FireHose_2);
@@ -473,13 +468,15 @@
             
         L.Routing.control({
             waypoints: [
-                L.latLng(57.74, 11.94),
-                L.latLng(57.6792, 11.949)
+                L.latLng(null),
+                L.latLng(null)
             ],
+            lineOptions: {
+                styles: [{color: 'red', opacity: 2, weight: 3}]},
             routeWhileDragging: true,
             geocoder: L.Control.Geocoder.nominatim()
         }).addTo(map);
-            
+                        
         </script>
     </body>
 </html>
