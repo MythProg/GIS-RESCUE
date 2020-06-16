@@ -18389,7 +18389,11 @@ module.exports = L.Routing = {
 				reverseBtn.setAttribute('type', 'button');
 				L.DomEvent.addListener(reverseBtn, 'click', function() {
 					this._waypoints.reverse();
-					this.setWaypoints(this._waypoints);
+					this.setWaypoints(null);
+				    this.map.removeLayer(marker);
+					for (i = 0; i < lines.length; i++) {
+						this.map.removeLayer(lines[i]);
+					}
 				}, this);
 			}
 

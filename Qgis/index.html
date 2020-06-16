@@ -42,6 +42,8 @@
         <script src="js/leaflet-routing-machine.js"></script>
         <script src="js/leaflet-geoman.min.js"></script>
         <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="js/MarkerCluster.js"></script>
+        <script src="js/layersupport.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -481,20 +483,18 @@
             
         var baseMaps = {};
         L.control.layers(baseMaps, {'<img src="legend/WaterExt_8.png" /> WaterExt': layer_WaterExt_8,'<img src="legend/FoamExt_7.png" /> FoamExt': layer_FoamExt_7,'<img src="legend/DryPowExt_6.png" /> DryPowExt': layer_DryPowExt_6,'<img src="legend/Co2Ext_5.png" /> Co2Ext': layer_Co2Ext_5,'<img src="legend/WetCExt_4.png" /> WetCExt': layer_WetCExt_4,'<img src="legend/ClassDExt_3.png" /> ClassDExt': layer_ClassDExt_3,'<img src="legend/FireHose_2.png" /> FireHose': layer_FireHose_2,'<img src="legend/FireHydrant_1.png" /> FireHydrant': layer_FireHydrant_1,},{collapsed:false, position: 'bottomleft'}).addTo(map);
-        
+                
         map.createPane('myRouting');
         map.getPane('myRouting').style.zIndex = 3000;
         var myRouting = new L.Routing.control({
-            waypoints: [
-                L.latLng(null),
-                L.latLng(null)
-            ],
+            waypoints: [],
             lineOptions: {
                 styles: [{pane: 'myRouting', color: 'red', opacity: 1, weight: 2}]},
             routeWhileDragging: true,
+            reverseWaypoints: true,
             geocoder: L.Control.Geocoder.nominatim()
         }).addTo(map);
-                        
+        
         </script>
     </body>
 </html>

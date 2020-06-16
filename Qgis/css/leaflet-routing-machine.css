@@ -128,7 +128,7 @@
 
 .leaflet-routing-reverse-waypoints:after {
     font-weight: normal;
-    content: '\21c5';
+    content: 'X';
 }
 
 .leaflet-routing-geocoders button:hover {
