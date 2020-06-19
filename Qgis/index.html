@@ -119,7 +119,7 @@
             layerName: 'layer_FireHydrant_1',
             pane: 'pane_FireHydrant_1',
             onEachFeature: function (feature, layer) {
-                layer.bindPopup('<h1>'+feature.properties.Type+'<img src="'+feature.properties.Picture+'" style="width:100px;height:100px;"></img></h1><p>Address: '+feature.properties.City+', '+feature.properties.Street+', '+feature.properties.Number+'</p><p>Intended For: '+feature.properties.IntendFor+'</p><p>SuperVisor Name: '+feature.properties.VisorName+'</p><p>SuperVisor Num: '+feature.properties.VisorNum+'</p><p>SuperVisor Location: '+feature.properties.VisorLoc+'</p><p>More Info: '+feature.properties.MoreInfo+'</p>');
+                layer.bindPopup('<h1>'+feature.properties.Type+'<img src="'+feature.properties.Picture+'" style="width:100px;height:100px;"></img></h1><p>Address: '+feature.properties.City+', '+feature.properties.Street+', '+feature.properties.Number+'</p><p>Intended For: '+feature.properties.IntendFor+'</p><p>SuperVisor Name: '+feature.properties.VisorName+'</p><p>SuperVisor Num: '+feature.properties.VisorNum+'</p><p>SuperVisor Location: '+feature.properties.VisorLoc+'</p><p>More Info: '+feature.properties.MoreInfo+'</p><button id="destBtn" type="button">Save Changes</button>');
             },pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
@@ -483,17 +483,37 @@
             
         var baseMaps = {};
         L.control.layers(baseMaps, {'<img src="legend/WaterExt_8.png" /> WaterExt': layer_WaterExt_8,'<img src="legend/FoamExt_7.png" /> FoamExt': layer_FoamExt_7,'<img src="legend/DryPowExt_6.png" /> DryPowExt': layer_DryPowExt_6,'<img src="legend/Co2Ext_5.png" /> Co2Ext': layer_Co2Ext_5,'<img src="legend/WetCExt_4.png" /> WetCExt': layer_WetCExt_4,'<img src="legend/ClassDExt_3.png" /> ClassDExt': layer_ClassDExt_3,'<img src="legend/FireHose_2.png" /> FireHose': layer_FireHose_2,'<img src="legend/FireHydrant_1.png" /> FireHydrant': layer_FireHydrant_1,},{collapsed:false, position: 'bottomleft'}).addTo(map);
-                
+            
         map.createPane('myRouting');
         map.getPane('myRouting').style.zIndex = 3000;
-        var myRouting = new L.Routing.control({
+        var control = new L.Routing.control({
             waypoints: [],
             lineOptions: {
                 styles: [{pane: 'myRouting', color: 'red', opacity: 1, weight: 2}]},
             routeWhileDragging: true,
             reverseWaypoints: true,
             geocoder: L.Control.Geocoder.nominatim()
-        }).addTo(map);
+        }).addTo(map); 
+
+        function button(label, container) {
+            var startBtn = L.DomUtil.create('button', '', container);
+            btn.setAttribute('type', 'button');
+            btn.innerHTML = label;
+            L.DomEvent.on(startBtn, 'click', function() {
+                control.spliceWaypoints(0, 1, e.latlng);
+            });
+            return startBtn;
+        }
+            
+        function button(label, container) {
+            var destBtn = L.DomUtil.create('button', '', container);
+            btn.setAttribute('type', 'button');
+            btn.innerHTML = label;
+            L.DomEvent.on(destBtn, 'click', function() {
+                control.spliceWaypoints(control.getWaypoints().length - 1, 1, e.latlng);
+            });
+            return startBtn;
+        }
         
         </script>
     </body>
