@@ -119,7 +119,7 @@
             layerName: 'layer_FireHydrant_1',
             pane: 'pane_FireHydrant_1',
             onEachFeature: function (feature, layer) {
-                layer.bindPopup('<h1>'+feature.properties.Type+'<img src="'+feature.properties.Picture+'" style="width:100px;height:100px;"></img></h1><p>Address: '+feature.properties.City+', '+feature.properties.Street+', '+feature.properties.Number+'</p><p>Intended For: '+feature.properties.IntendFor+'</p><p>SuperVisor Name: '+feature.properties.VisorName+'</p><p>SuperVisor Num: '+feature.properties.VisorNum+'</p><p>SuperVisor Location: '+feature.properties.VisorLoc+'</p><p>More Info: '+feature.properties.MoreInfo+'</p><button id="destBtn()" block>Go to this location</button>');
+                layer.bindPopup('<h1>'+feature.properties.Type+'<img src="'+feature.properties.Picture+'" style="width:100px;height:100px;"></img></h1><p>Address: '+feature.properties.City+', '+feature.properties.Street+', '+feature.properties.Number+'</p><p>Intended For: '+feature.properties.IntendFor+'</p><p>SuperVisor Name: '+feature.properties.VisorName+'</p><p>SuperVisor Num: '+feature.properties.VisorNum+'</p><p>SuperVisor Location: '+feature.properties.VisorLoc+'</p><p>More Info: '+feature.properties.MoreInfo+'</p>');
             },pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
