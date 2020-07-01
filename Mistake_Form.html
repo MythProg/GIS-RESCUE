@@ -1,32 +1,61 @@
 <!DOCTYPE html>
-<html> 
-  <head>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="NewFormstyle.css">
 </head>
-    <body>
-    <div style="width:400px; margin-right:auto; margin-left:auto; border:1px solid #000;">
-   <form action="mailto:gisrescue@gmail.com?subject=טעות במידע" method="post" enctype="text/plain">
-      <label for="fname">Name</label>
-      <input type="text" name="FirstName" id="fname" value=""/><br/><br/>
-       <label for="fname">Full Adress</label><br>
-        <textarea name="message" rows="2" cols="40">Adress.</textarea>
-      <br><br>
-       <label for="ftext">Dscirbe the misake: </label>
-        <br/><br/>
-         <input type="checkbox" id="E1" name="E1" value="WorngLoction">
-         <label for="E1"> Worng Loction </label><br>
-         <input type="checkbox" id="E2" name="E2" value="WorngTypeOfExtinguishe">
-         <label for="E2"> Worng Type of extinguisher </label><br>
-         <input type="checkbox" id="E3" name="E3" value="WorngSuperVisor">
-       <label for="E3"> Worng SuperVisor</label><br>
-         <input type="checkbox" id="E4" name="E4" value="WorngSuperVisor_Num">
-         <label for="E3"> Worng SuperVisor Number</label>
-       <br/><br/>
-        <label for="ftext">Additional information: </label><br>
-        <input type="text" name="Additional Information" size="50"><br><br>
-      <input type="submit" value="Send"/>
-       <p>יש למלא את מה שצריך באנגלית בלבד,תודה</p>
-    </form>
-    </div> 
-
-         </body>
+<div id="contact-form">
+	<div>
+		<h4>plese fill the following information and we will add it ASAP</h4>
+		<h4>נא לרשום באנגלית בלבד</h4> 
+		
+	</div>
+		   <form action="mailto:gisrescue@gmail.com?subject=טעות במידע" method="post" enctype="text/plain">
+			<div>
+				<h4>Your Details:</h4>
+		      <label for="full name">
+		      	<span class="required">Full name: *</span> 
+		      	<input type="text" id="name" name="Full Name" value="" placeholder="Your FullName" required="required" tabindex="1" autofocus="autofocus" />
+		      </label> 
+			</div>
+			<div>
+		      <label for="email">
+		      	<span class="required">Email: *</span>
+		      	<input type="email" id="email" name="email" value="" placeholder="example@gmail.com" tabindex="2" required="required" />
+		      </label>  
+			</div>
+		<h4>Fire extinguisher Details:</h4> 
+			   			     <div>	
+                      <label for="Full Adress">
+		      	<span class="required">Full Adress: *</span>
+		      	<input type="name" id="email" name="Adress" value="" placeholder="Fire Extinguisher Adress" tabindex="2" required="required" />
+		      </label>
+			</div>
+			    <label for="Misake type">
+		      <span>Misake type: </span>
+			      <select id="Misake type" name="Misake type" tabindex="5">   
+			        <option value="Loction">Worng Loction</option>
+			        <option value="SuperVisor">Worng SuperVisor</option>  
+			        <option value="SuperVisor Number">Worng SuperVisor Number </option>
+				    <option value="SuperVisor Loction">Worng SuperVisor Loction</option>
+					<option value="intded for">Worng "intded for"</option>
+			      </select>
+		      </label>
+	
+	           		<div>
+		      <label for="Additonal Information">
+		      	<span class="required">Additonal Informatio: *</span>
+		      	<input type="text" id="email" name="Phone Num" value="" placeholder="More info" tabindex="2" required="required" />
+		      </label>  
+			</div>
+			     <div>
+			  	<div>		           
+		      <button name="submit" type="submit" id="submit" >SEND</button> 
+			</div>
+			   </div>
+	</form>
+	</div>
 </html>
+			   			 
